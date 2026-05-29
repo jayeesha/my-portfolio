@@ -1,12 +1,15 @@
-import Image from "next/image";
 import { Hero } from "@/app/components/Hero";
+import { About } from "@/app/components/About";
+import { Projects } from "@/app/components/Projects";
+import { Contact } from "@/app/components/Contact";
 
 export default function Home() {
   return (
-    <div>
-      <main>
-        <Hero />
-      </main>
-    </div>
+    <main>
+      <Hero />
+      <About />
+      <Projects />
+      <Contact />
+    </main>
   );
 }
