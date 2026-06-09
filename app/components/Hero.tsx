@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { Sour_Gummy } from "next/font/google";
-// import {  Film, BookOpen, Plane, Utensils } from "lucide-react";
 import {
   gsap,
   useGSAP,
@@ -196,8 +195,6 @@ export function Hero() {
         });
       });
 
-      // As the Hero scrolls up and only ~30% of it remains visible, ease the
-      // content out and fade the background to black. Reverses on scroll back.
       const fadeOut = gsap.timeline({ paused: true });
       fadeOut
         .to(".icons-layer", { autoAlpha: 0, ease: "power2.out" }, 0)
@@ -210,8 +207,6 @@ export function Hero() {
 
       ScrollTrigger.create({
         trigger: containerRef.current,
-        // "70% top" = the point 70% down the Hero hits the viewport top,
-        // i.e. only the bottom 30% of the Hero is still on screen.
         start: "50% top",
         onEnter: () => fadeOut.play(),
         onLeaveBack: () => fadeOut.reverse(),

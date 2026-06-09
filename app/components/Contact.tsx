@@ -1,7 +1,7 @@
 "use client";
 import { useRef } from "react";
-import { Download, Mail } from "lucide-react";
-import { gsap, useGSAP, DrawSVGPlugin } from "./gsap-plugins";
+import { Mail } from "lucide-react";
+import { gsap, useGSAP } from "./gsap-plugins";
 
 function Github(props: React.SVGProps<SVGSVGElement>) {
   return (
