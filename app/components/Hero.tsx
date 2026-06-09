@@ -1,8 +1,12 @@
 "use client";
 import { useRef } from "react";
 import { Sour_Gummy } from "next/font/google";
-import { Music, Film, BookOpen, Plane, Utensils } from "lucide-react";
+// import {  Film, BookOpen, Plane, Utensils } from "lucide-react";
 import { gsap, useGSAP, SplitText, Draggable } from "./gsap-plugins";
+import Movie from "../icons/Movie";
+import Travel from "../icons/Travel";
+import Music from "../icons/Music";
+import Paint from "../icons/Paint";
 
 const googleFont = Sour_Gummy({
   subsets: ["latin"],
@@ -10,11 +14,10 @@ const googleFont = Sour_Gummy({
 });
 
 const ICONS = [
+  { Icon: Movie, label: "Movies" },
   { Icon: Music, label: "Music" },
-  { Icon: Film, label: "Movies" },
-  { Icon: BookOpen, label: "Books" },
-  { Icon: Plane, label: "Travel" },
-  { Icon: Utensils, label: "Food" },
+  { Icon: Paint, label: "Paint" },
+  { Icon: Travel, label: "Travel" },
 ] as const;
 
 export function Hero() {
@@ -152,10 +155,10 @@ export function Hero() {
         {ICONS.map(({ Icon, label }) => (
           <div
             key={label}
-            className="hobby-icon absolute top-0 left-0 w-14 h-14 flex items-center justify-center rounded-2xl bg-foreground/5 backdrop-blur-sm border border-foreground/10 cursor-grab active:cursor-grabbing select-none shadow-sm"
+            className="hobby-icon absolute top-0 left-0 w-20 h-20 flex items-center justify-center cursor-grab active:cursor-grabbing select-none shadow-sm"
             style={{ touchAction: "none" }}
           >
-            <Icon className="w-7 h-7 text-foreground/80" strokeWidth={1.75} />
+            <Icon className="w-20 h-20 text-foreground/80" />
           </div>
         ))}
       </div>
