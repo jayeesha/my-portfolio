@@ -1,5 +1,7 @@
 "use client";
 import { useRef } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 import { gsap, useGSAP } from "./gsap-plugins";
 
@@ -7,30 +9,32 @@ type Project = {
   title: string;
   description: string;
   href: string;
+  screenshot: string;
   tag: string;
 };
 
 const PROJECTS: Project[] = [
   {
-    title: "Project One",
-    description:
-      "An interactive dashboard with real-time data viz, built on Next.js and D3.",
-    href: "#",
-    tag: "Web app",
+    title: "Geo Green Cover",
+    description: "A Green Cover Change Detection app",
+    href: "https://geo-green-cover.vercel.app/",
+    screenshot: "/geo_green_cover_project.png",
+    tag: "Environment",
   },
   {
-    title: "Project Two",
-    description:
-      "A design-system component library with motion primitives and docs site.",
-    href: "#",
-    tag: "Library",
+    title: "Doodle Detect",
+    description: "Draw on a canvas and let AI guess what your sketch is",
+    href: "https://doodle-detect.vercel.app/",
+    screenshot: "/doodle_detect_project.png",
+    tag: "AI",
   },
   {
-    title: "Project Three",
+    title: "Movie Explorer",
     description:
-      "A generative-art playground for exploring shaders and creative coding.",
-    href: "#",
-    tag: "Experiment",
+      "Movie discovery app built with React, TypeScript, Vite and The Movie Database (TMDb) API",
+    href: "https://movie-explorer-ftj28n8jz-jayeeshas-projects.vercel.app/",
+    screenshot: "/movie_explorer_project.png",
+    tag: "Movie",
   },
 ];
 
@@ -91,7 +95,17 @@ export function Projects() {
               key={p.title}
               className="shrink-0 w-[80vw] sm:w-[65vw] md:w-[50vw] lg:w-[38vw] rounded-2xl border border-foreground/10 bg-foreground/[0.02] p-6 flex flex-col gap-4"
             >
-              <div className="aspect-video rounded-xl bg-gradient-to-br from-foreground/10 to-foreground/5" />
+              <div className="relative w-full aspect-video">
+                <Link href={p.href} target="_blank" rel="noopener noreferrer">
+                  <Image
+                    src={p.screenshot}
+                    alt={`${p.screenshot}`}
+                    fill
+                    className="rounded-xl"
+                  />
+                </Link>
+              </div>
+
               <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-foreground/50">
                 {p.tag}
               </div>
@@ -103,7 +117,7 @@ export function Projects() {
                 href={p.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium mt-auto hover:gap-3 transition-all"
+                className="inline-flex items-center gap-2 text-sm font-medium mt-auto"
               >
                 View project
                 <ExternalLink className="w-4 h-4" />

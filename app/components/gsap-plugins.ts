@@ -6,7 +6,8 @@ import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { Draggable } from "gsap/Draggable";
 import { InertiaPlugin } from "gsap/InertiaPlugin";
 import { MorphSVGPlugin } from "gsap/MorphSVGPlugin";
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 
-gsap.registerPlugin(useGSAP, SplitText, ScrollTrigger, ScrollSmoother, Draggable, InertiaPlugin, MorphSVGPlugin);
+gsap.registerPlugin(useGSAP, SplitText, ScrollTrigger, ScrollSmoother, Draggable, InertiaPlugin, MorphSVGPlugin, DrawSVGPlugin);
 
-export { gsap, useGSAP, SplitText, ScrollTrigger, ScrollSmoother, Draggable, InertiaPlugin, MorphSVGPlugin };
+export { gsap, useGSAP, SplitText, ScrollTrigger, ScrollSmoother, Draggable, InertiaPlugin, MorphSVGPlugin, DrawSVGPlugin };

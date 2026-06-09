@@ -1,7 +1,7 @@
 "use client";
 import { useRef } from "react";
 import { Download, Mail } from "lucide-react";
-import { gsap, useGSAP } from "./gsap-plugins";
+import { gsap, useGSAP, DrawSVGPlugin } from "./gsap-plugins";
 
 function Github(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -21,29 +21,22 @@ function Linkedin(props: React.SVGProps<SVGSVGElement>) {
 
 const LINKS = [
   {
-    label: "Download CV",
-    href: "/cv-placeholder.pdf",
-    Icon: Download,
-    download: true,
-    external: false,
-  },
-  {
     label: "Email",
-    href: "mailto:juhirani1996@gmail.com",
+    href: "mailto:jayeeshagh@gmail.com",
     Icon: Mail,
     download: false,
     external: false,
   },
   {
     label: "GitHub",
-    href: "https://github.com/",
+    href: "https://github.com/jayeesha/",
     Icon: Github,
     download: false,
     external: true,
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com/",
+    href: "https://www.linkedin.com/in/jayeesha-ghosh/",
     Icon: Linkedin,
     download: false,
     external: true,
@@ -55,29 +48,17 @@ export function Contact() {
 
   useGSAP(
     () => {
-      const trigger = {
-        trigger: sectionRef.current,
-        start: "top 80%",
-        toggleActions: "play none none reverse",
-      } as const;
-
-      gsap.from(".contact-heading", {
-        y: 30,
-        autoAlpha: 0,
-        duration: 0.7,
-        ease: "power2.out",
-        scrollTrigger: trigger,
-      });
-
-      gsap.from(".contact-link", {
-        y: 20,
-        autoAlpha: 0,
-        stagger: 0.1,
-        duration: 0.5,
-        ease: "power2.out",
-        delay: 0.2,
-        scrollTrigger: trigger,
-      });
+      gsap.fromTo(
+        ".contact-box",
+        { drawSVG: "0%" },
+        {
+          drawSVG: "100%",
+          duration: 2,
+          ease: "power1.inOut",
+          repeat: -1,
+          yoyo: true,
+        },
+      );
     },
     { scope: sectionRef },
   );
@@ -88,24 +69,45 @@ export function Contact() {
       id="contact"
       className="w-full min-h-[70vh] px-6 md:px-16 py-24 flex flex-col items-center justify-center text-center"
     >
-      <h2 className="contact-heading text-4xl md:text-6xl font-bold mb-12">
-        Let&apos;s talk.
-      </h2>
-      <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-        {LINKS.map(({ label, href, Icon, download, external }) => (
-          <a
-            key={label}
-            href={href}
-            {...(download ? { download: "" } : {})}
-            {...(external
-              ? { target: "_blank", rel: "noopener noreferrer" }
-              : {})}
-            className="contact-link inline-flex items-center gap-2 px-5 py-3 rounded-full border border-foreground/15 hover:bg-foreground hover:text-background transition-colors text-sm md:text-base font-medium"
-          >
-            <Icon className="w-4 h-4 md:w-5 md:h-5" />
-            {label}
-          </a>
-        ))}
+      <div className="relative px-8 py-12 md:px-16 md:py-16">
+        <svg
+          className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
+          fill="none"
+          aria-hidden="true"
+        >
+          <rect
+            className="contact-box"
+            x="2"
+            y="2"
+            rx="24"
+            stroke="white"
+            strokeWidth="2"
+            style={{
+              width: "calc(100% - 2px)",
+              height: "calc(100% - 2px)",
+            }}
+          />
+        </svg>
+
+        <h2 className="contact-heading text-4xl md:text-6xl font-bold mb-12">
+          Let&apos;s talk.
+        </h2>
+        <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+          {LINKS.map(({ label, href, Icon, download, external }) => (
+            <a
+              key={label}
+              href={href}
+              {...(download ? { download: "" } : {})}
+              {...(external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+              className="contact-link inline-flex items-center gap-2 px-5 py-3 rounded-full border border-foreground/15 hover:bg-foreground hover:text-background transition-colors duration-300 ease-out text-sm md:text-base font-medium"
+            >
+              <Icon className="w-4 h-4 md:w-5 md:h-5" />
+              {label}
+            </a>
+          ))}
+        </div>
       </div>
       <p className="mt-16 text-xs text-foreground/40">
         © {new Date().getFullYear()} Jayeesha Ghosh

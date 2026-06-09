@@ -23,15 +23,14 @@ export function About() {
 
   useGSAP(
     () => {
-      // clip-path reveal scrubbed to scroll — replaces Framer Motion useScroll/useTransform
       gsap.fromTo(
-        wrapperRef.current,
+        sectionRef.current,
         { clipPath: "circle(0% at 50% 50%)" },
         {
           clipPath: "circle(75% at 50% 50%)",
           ease: "none",
           scrollTrigger: {
-            trigger: wrapperRef.current,
+            trigger: sectionRef.current,
             start: "top bottom",
             end: "center center",
             scrub: true,
@@ -41,20 +40,20 @@ export function About() {
 
       const trigger = {
         trigger: sectionRef.current,
-        start: "top 70%",
+        start: "top 100%",
         toggleActions: "play none none reverse",
       } as const;
 
       gsap.from(".about-photo", {
         x: -100,
         autoAlpha: 0,
-        duration: 0.9,
+        duration: 0.8,
         ease: "power2.out",
         scrollTrigger: trigger,
       });
 
       gsap.from(".about-heading", {
-        x: 100,
+        x: 50,
         autoAlpha: 0,
         duration: 0.8,
         ease: "power2.out",
@@ -83,9 +82,8 @@ export function About() {
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full">
           {/* data-speed: photo scrolls slightly slower → subtle upward drift parallax */}
           <div
-            className="about-photo relative h-100 w-100 aspect-square max-w-md mx-auto rounded-full
+            className="about-photo relative h-100 w-100 aspect-square max-w-md mx-auto rounded-100
              overflow-hidden bg-foreground/5 border border-foreground/10"
-            data-speed="0.85"
           >
             <Image
               src="/Jayeesha_Ghosh_picture.png"
@@ -97,7 +95,7 @@ export function About() {
           </div>
 
           {/* data-lag: text column lags slightly behind scroll for a staggered depth feel */}
-          <div data-lag="0.15">
+          <div>
             <h2 className="about-heading text-4xl md:text-5xl font-bold mb-8 text-gray-800">
               About me
             </h2>
