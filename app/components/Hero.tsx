@@ -173,23 +173,18 @@ export function Hero() {
           },
           onRelease() {
             gsap.to(el, { scale: 1, duration: 0.15, ease: "power2.out" });
+          },
+
+          onThrowComplete() {
+            const currentX = gsap.getProperty(el, "x") as number;
+            const clampedX = gsap.utils.clamp(0, layerW - size, currentX);
             gsap.to(el, {
+              x: clampedX,
               y: restingPositions[i].y,
               duration: 1.1,
               ease: "bounce.out",
-              onComplete: () => {
-                const currentX = gsap.getProperty(el, "x") as number;
-                const clampedX = gsap.utils.clamp(0, layerW - size, currentX);
-                if (clampedX !== currentX)
-                  gsap.to(el, { x: clampedX, duration: 0.3 });
-                gsap.to(el, {
-                  // rotation: `+=${gsap.utils.random(-8, 8)}`,
-                  duration: 1.8 + Math.random() * 1.5,
-                  repeat: -1,
-                  yoyo: true,
-                  ease: "sine.inOut",
-                });
-              },
+              overwrite: true,
+              onComplete: () => startIdleAnimation([el]),
             });
           },
         });
