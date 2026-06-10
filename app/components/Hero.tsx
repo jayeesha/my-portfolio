@@ -148,8 +148,8 @@ export function Hero() {
       function startIdleAnimation(els: HTMLDivElement[]) {
         els.forEach((el) => {
           gsap.to(el, {
-            rotation: `+=${gsap.utils.random(-8, 8)}`,
-            duration: 1.8 + Math.random() * 1.5,
+            rotation: `+=${gsap.utils.random(-20, 20)}`,
+            duration: 1.8 + Math.random() * 2,
             repeat: -1,
             yoyo: true,
             ease: "sine.inOut",
