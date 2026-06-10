@@ -36,6 +36,14 @@ const PROJECTS: Project[] = [
     screenshot: "/movie_explorer_project.png",
     tag: "Movie",
   },
+  {
+    title: "BTS Break App",
+    description:
+      "Electron App built with React and TypeScript that locks the screen with an animated character to enforce breaks",
+    href: "https://github.com/jayeesha/break-bts-app",
+    screenshot: "/BTS_break_project.png",
+    tag: "Electron App",
+  },
 ];
 
 export function Projects() {

@@ -12,6 +12,7 @@ import Movie from "../icons/Movie";
 import Travel from "../icons/Travel";
 import Music from "../icons/Music";
 import Paint from "../icons/Paint";
+import Environment from "../icons/Environment";
 
 const googleFont = Sour_Gummy({
   subsets: ["latin"],
@@ -23,6 +24,7 @@ const BASE_ICONS = [
   { Icon: Music, label: "Music" },
   { Icon: Paint, label: "Paint" },
   { Icon: Travel, label: "Travel" },
+  { Icon: Environment, label: "Environment" },
 ] as const;
 
 type IconData = {
@@ -35,14 +37,14 @@ type IconData = {
 
 // Generated on the client only (random values would otherwise mismatch SSR).
 function generateIcons(): IconData[] {
-  const count = Math.floor(Math.random() * 21) + 150;
+  const count = Math.floor(Math.random() * 21) + 100;
   return Array.from({ length: count }, (_, idx) => {
     const base = BASE_ICONS[idx % BASE_ICONS.length];
     return {
       ...base,
       id: `${base.label}-${idx}`,
-      shouldFall: Math.random() < 0.3,
-      size: Math.floor(Math.random() * 50) + 32,
+      shouldFall: Math.random() < 0.1,
+      size: Math.floor(Math.random() * 80) + 32,
     };
   });
 }
@@ -223,14 +225,14 @@ export function Hero() {
         {icons.map(({ Icon, id, size }) => (
           <div
             key={id}
-            className="hobby-icon absolute top-0 left-0 flex items-center justify-center cursor-grab active:cursor-grabbing select-none shadow-sm"
+            className="hobby-icon absolute top-0 left-0 flex items-center justify-center cursor-grab active:cursor-grabbing select-none"
             style={{
               touchAction: "none",
               width: `${size}px`,
               height: `${size}px`,
             }}
           >
-            <Icon className="text-foreground/80" />
+            <Icon className="" />
           </div>
         ))}
       </div>
@@ -243,8 +245,8 @@ export function Hero() {
         >
           Jayeesha Ghosh
         </h1>
-        <p className="mt-6 text-sm text-foreground/50">
-          grab the icons — they&apos;ll fall back down
+        <p className="mt-6 text-sm font-bold text-foreground/50">
+          play with the icons, drag them around and they&apos;ll fall back down
         </p>
       </div>
     </section>
